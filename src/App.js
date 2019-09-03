@@ -106,7 +106,7 @@ class App extends Component {
     // TODO:
     // Put the application into a loading state.
     console.log('__ PUTTING THE APP INTO A LOADING STATE.'); 
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, hasError: false });
 
     // Invoke the `getCharacters()` method on the marvel service.
     this.marvelService.getCharacters( { nameStartsWith: this.state.searchTerm })  // Pass in the current `searchTerm` as `nameStartsWith`.
@@ -172,6 +172,38 @@ class App extends Component {
         this.setState({ hasError: true });  // Handle potential errors.
       });
   }
+
+  // --------------------------------------------------
+  // FETCHING COMICS
+  // --------------------------------------------------
+  fetchComics() {
+    // console.warn('Whoops, it looks like this method hasn\'t been implemented yet');
+    // TODO:
+    // Put the application into a loading state.
+    console.log('__ PUTTING THE APP INTO A LOADING STATE.'); 
+    this.setState({ isLoading: true, hasError: false });
+
+    // Invoke the `getCcomics()` method on the marvel service.
+    this.marvelService.getComics( { titleStartsWith: this.state.searchTerm })  // Pass in the current `searchTerm` as `nameStartsWith`.
+      .then((data) => {
+        console.log('.then:');
+        console.log(data.results);
+
+        // Update the application state using the resulting data.
+        // Remove the loading state.
+        this.setState({ 
+          results: data.results, 
+          isLoading: false,
+          canLoadMore: data.total > data.offset + data.count  // Returns true when total number of results is greater than the offset (results skipped) plus results returned.
+        });  
+      })
+      .catch((err) => {
+        console.error(err);
+        this.setState({ hasError: true });  // Handle potential errors.
+      });
+  }
+
+
 }
 
 export default App;
