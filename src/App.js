@@ -87,14 +87,20 @@ class App extends Component {
   // LIFECYCLE
   // --------------------------------------------------
   componentDidUpdate(_, prevState) {
+    const searchType = this.state.searchType;
     const searchTerm = this.state.searchTerm;
+    const prevSearchType = prevState.searchType;
     const prevSearchTerm = prevState.searchTerm;
 
     if (
       searchTerm
-      && (searchTerm !== prevSearchTerm)
+      && ((searchTerm !== prevSearchTerm) || (searchType !== prevSearchType))
     ) {
-      this.fetchCharacters();
+      if (searchType === 'Characters') {
+        this.fetchCharacters();
+      } else {
+        this.fetchComics();
+      }
     }
   }
 
@@ -202,8 +208,6 @@ class App extends Component {
         this.setState({ hasError: true });  // Handle potential errors.
       });
   }
-
-
 }
 
 export default App;
