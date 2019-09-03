@@ -70,4 +70,25 @@ export class MarvelService {
         return response.data.data;  // - Parse and return the response.
       });
   }
+
+  getComics() {
+    // console.warn('Whoops, it looks like this method hasn\'t been implemented yet.');
+    // TODO:
+    // - Create the `params` object.
+    console.log('Params object');
+    const myRequestParams = { ...config, ...this.getAuthConfig() };
+
+    // - Extract the correct endpoint from `ENDPOINTS`.
+    console.log('Endpoints object');
+    const endpoint = MarvelService.ENDPOINTS.comics;
+
+    // - Dispatch a request using `axios.get()`.
+    console.log('Axios request');
+    return axios.get(endpoint, { params: myRequestParams })
+      .then((response) => {
+        console.log(response.data.data);
+        return response.data.data;  // - Parse and return the response.
+      });
+  }
+
 }
