@@ -23,6 +23,7 @@ class App extends Component {
 
     this.fetchCharacters = this.fetchCharacters.bind(this);
     this.fetchCharacter = this.fetchCharacter.bind(this);
+    this.fetchMoreCharacters = this.fetchMoreCharacters.bind(this);
 
     this.marvelService = new MarvelService({
       apiKey: this.props.apiKey,
@@ -60,7 +61,7 @@ class App extends Component {
 
     const loadMoreElem = this.state.canLoadMore
     ? (
-      <LoadMore />
+      <LoadMore onClick = { this.fetchMoreCharacters } />
     )
     : '';
 
