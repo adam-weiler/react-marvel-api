@@ -102,7 +102,11 @@ class App extends Component {
 
         // Update the application state using the resulting data.
         // Remove the loading state.
-        this.setState({ results: data.data.results, isLoading: false });  
+        this.setState({ 
+          results: data.data.results, 
+          isLoading: false,
+          canLoadMore: data.total > data.offset + data.count  // Returns true when total number of results is greater than the offset (results skipped) plus results returned.
+        });  
       })
       .catch((err) => {
         this.setState({ hasError: true });  // Handle potential errors.
