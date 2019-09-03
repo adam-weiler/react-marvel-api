@@ -17,6 +17,7 @@ class App extends Component {
 
     this.state = {
       searchTerm: '',
+      searchType: 'Characters',
       results: [],
       selectedResult: null,
     };
