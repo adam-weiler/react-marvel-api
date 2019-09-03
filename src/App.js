@@ -105,7 +105,7 @@ class App extends Component {
     this.setState({ isLoading: true });
 
     // Invoke the `getCharacters()` method on the marvel service.
-    this.marvelService.getCharacters( { nameStartsWith: this.state.searchTerm })  // Pass in the current `searchTerm` as `nameStartsWith`,
+    this.marvelService.getCharacters( { nameStartsWith: this.state.searchTerm })  // Pass in the current `searchTerm` as `nameStartsWith`.
       .then((data) => {
         console.log('.then:');
         console.log(data.results);
@@ -135,6 +135,31 @@ class App extends Component {
         console.log(result);
 
         this.setState({ selectedResult: result });  // Update the application state using the resulting data.
+      })
+      .catch((err) => {
+        this.setState({ hasError: true });  // Handle potential errors.
+      });
+  }
+
+  fetchMoreCharacters() {
+    // console.warn('Whoops, it looks like this method hasn\'t been implemented yet');
+    // TODO:
+
+    // Invoke the `getCharacters()` method on the marvel service.
+    this.marvelService.getCharacters({ 
+      nameStartsWith: this.state.searchTerm,  // Pass in the current `searchTerm` as `nameStartsWith`.
+      offset: this.state.results.length,  // Pass in the offset to find the next set of results.
+    })  
+      .then((data) => {
+        console.log('.then:');
+        console.log(data.results);
+
+        // Update the application state using the resulting data.
+        // Remove the loading state.
+        this.setState({ 
+          results: [...this.state.results, ...data.results], 
+          canLoadMore: data.total > data.offset + data.count  // Returns true when total number of results is greater than the offset (results skipped) plus results returned.
+        });  
       })
       .catch((err) => {
         this.setState({ hasError: true });  // Handle potential errors.
