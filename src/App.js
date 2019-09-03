@@ -22,10 +22,10 @@ class App extends Component {
       selectedResult: null,
     };
 
-    this.fetchCharacters = this.fetchCharacters.bind(this);
+    // this.fetchCharacters = this.fetchCharacters.bind(this);
     this.fetchCharacter = this.fetchCharacter.bind(this);
     this.fetchMoreCharacters = this.fetchMoreCharacters.bind(this);
-    // Does this need fetch Comics?
+    this.fetchComic = this.fetchComic.bind(this);
     this.fetchMoreComics = this.fetchMoreComics.bind(this);
 
     this.marvelService = new MarvelService({
@@ -46,7 +46,11 @@ class App extends Component {
             results={ this.state.results }
             searchTerm={ this.state.searchTerm }
             searchType={ this.state.searchType}
-            onResultClick={ this.fetchCharacter }
+            onResultClick={
+              this.state.searchType === 'Characters'
+              ? this.fetchCharacter
+              : this.fetchComic
+             }
           />
         );
 
@@ -215,6 +219,27 @@ class App extends Component {
         this.setState({ hasError: true });  // Handle potential errors.
       });
   }
+
+
+  fetchComic(id) {
+    // console.warn('Whoops, it looks like this method hasn\'t been implemented yet');
+    // TODO:
+    // Invoke the `getComic()` method on the marvel service.
+    console.log(' Loading an Hero!');
+    this.marvelService.getComic(id)  // Pass in the `id`.
+      .then((data) => {
+        console.log('.then:');
+        const result = data.results[0]
+        console.log(result);
+
+        this.setState({ selectedResult: result });  // Update the application state using the resulting data.
+      })
+      .catch((err) => {
+        console.error(err);
+        this.setState({ hasError: true });  // Handle potential errors.
+      });
+  }
+
 
   fetchMoreComics() {
     // console.warn('Whoops, it looks like this method hasn\'t been implemented yet');
