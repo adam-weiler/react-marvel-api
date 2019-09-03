@@ -25,6 +25,8 @@ class App extends Component {
     this.fetchCharacters = this.fetchCharacters.bind(this);
     this.fetchCharacter = this.fetchCharacter.bind(this);
     this.fetchMoreCharacters = this.fetchMoreCharacters.bind(this);
+    // Does this need fetch Comics?
+    this.fetchMoreComics = this.fetchMoreComics.bind(this);
 
     this.marvelService = new MarvelService({
       apiKey: this.props.apiKey,
@@ -63,7 +65,11 @@ class App extends Component {
 
     const loadMoreElem = this.state.canLoadMore
     ? (
-      <LoadMore onClick = { this.fetchMoreCharacters } />
+      <LoadMore onClick = { 
+        this.state.searchType === 'Characters'
+        ? this.fetchMoreCharacters
+        : this.fetchMoreComics 
+      } />
     )
     : '';
 
@@ -216,9 +222,9 @@ class App extends Component {
 
     // Invoke the `getComics()` method on the marvel service.
     this.marvelService.getComics({ 
-      nameStartsWith: this.state.searchTerm,  // Pass in the current `searchTerm` as `nameStartsWith`.
+      titleStartsWith: this.state.searchTerm,  // Pass in the current `searchTerm` as `titleStartsWith`.
       offset: this.state.results.length,  // Pass in the offset to find the next set of results.
-    })  
+    })
       .then((data) => {
         console.log('.then:');
         console.log(data.results);
