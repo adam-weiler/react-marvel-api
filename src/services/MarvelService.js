@@ -46,8 +46,8 @@ export class MarvelService {
     console.log('Axios request');
     return axios.get(endpoint, { params: myRequestParams })
       .then((response) => {
-        // console.log(response.data);
-        return response.data;  // - Parse and return the response.
+        console.log(response.data.data);
+        return response.data.data;  // - Parse and return the response.
       });
   }
 
@@ -66,8 +66,8 @@ export class MarvelService {
     console.log('Axios request');
     return axios.get(endpoint, { params: myRequestParams })
       .then((response) => {
-        // console.log(response.data);
-        return response.data;  // - Parse and return the response.
+        console.log(response.data.data);
+        return response.data.data;  // - Parse and return the response.
       });
   }
 }

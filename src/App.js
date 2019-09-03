@@ -6,6 +6,7 @@ import { SearchBar } from './components/SearchBar';
 import { Error } from './components/Error';
 import { Loading } from './components/Loading';
 import { MarvelService } from './services/MarvelService';
+import { LoadMore } from './components/LoadMore';
 
 class App extends Component {
   // --------------------------------------------------
@@ -57,6 +58,14 @@ class App extends Component {
       )
       : '';
 
+    const loadMoreElem = this.state.canLoadMore
+    ? (
+      <LoadMore />
+    )
+    : '';
+
+    // Where does this go?
+
     return (
       <section className="app">
         <SearchBar
@@ -64,6 +73,7 @@ class App extends Component {
           onSubmit={ (searchTerm) => this.setState({ searchTerm }) }
         />
         { resultsElem }
+        { loadMoreElem }
         { detailsElem }
       </section>
     );
@@ -98,12 +108,12 @@ class App extends Component {
     this.marvelService.getCharacters( { nameStartsWith: this.state.searchTerm })  // Pass in the current `searchTerm` as `nameStartsWith`,
       .then((data) => {
         console.log('.then:');
-        console.log(data.data.results);
+        console.log(data.results);
 
         // Update the application state using the resulting data.
         // Remove the loading state.
         this.setState({ 
-          results: data.data.results, 
+          results: data.results, 
           isLoading: false,
           canLoadMore: data.total > data.offset + data.count  // Returns true when total number of results is greater than the offset (results skipped) plus results returned.
         });  
@@ -121,7 +131,7 @@ class App extends Component {
     this.marvelService.getCharacter(id)  // Pass in the `id`.
       .then((data) => {
         console.log('.then:');
-        const result = data.data.results[0]
+        const result = data.results[0]
         console.log(result);
 
         this.setState({ selectedResult: result });  // Update the application state using the resulting data.
