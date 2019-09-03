@@ -106,7 +106,7 @@ class App extends Component {
       })
       .catch((err) => {
         this.setState({ hasError: true });  // Handle potential errors.
-      })
+      });
   }
 
   fetchCharacter(id) {
@@ -114,20 +114,17 @@ class App extends Component {
     // TODO:
     // Invoke the `getCharacter()` method on the marvel service.
     console.log(' Loading an Hero!');
-    this.marvelService.getCharacter( { id: id })  // Pass in the `id`.
+    this.marvelService.getCharacter(id)  // Pass in the `id`.
       .then((data) => {
         console.log('.then:');
-        console.log(data.data.results);
+        const result = data.data.results[0]
+        console.log(result);
 
-
+        this.setState({ selectedResult: result });  // Update the application state using the resulting data.
       })
       .catch((err) => {
         this.setState({ hasError: true });  // Handle potential errors.
-      })
-
-    
-    // Update the application state using the resulting data.
-    // Handle potential errors.
+      });
   }
 }
 

@@ -60,7 +60,7 @@ export class MarvelService {
 
     // - Extract the correct endpoint from `ENDPOINTS`; add the `id`.
     console.log('Endpoings object');
-    const endpoint = `${MarvelService.ENDPOINTS.character}/${ id.id }`;
+    const endpoint = `${MarvelService.ENDPOINTS.character}/${ id }`;
 
     // - Dispatch a request using `axios.get()`.
     console.log('Axios request');
