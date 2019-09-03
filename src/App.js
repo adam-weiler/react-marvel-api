@@ -209,6 +209,35 @@ class App extends Component {
         this.setState({ hasError: true });  // Handle potential errors.
       });
   }
+
+  fetchMoreComics() {
+    // console.warn('Whoops, it looks like this method hasn\'t been implemented yet');
+    // TODO:
+
+    // Invoke the `getComics()` method on the marvel service.
+    this.marvelService.getComics({ 
+      nameStartsWith: this.state.searchTerm,  // Pass in the current `searchTerm` as `nameStartsWith`.
+      offset: this.state.results.length,  // Pass in the offset to find the next set of results.
+    })  
+      .then((data) => {
+        console.log('.then:');
+        console.log(data.results);
+
+        // Update the application state using the resulting data.
+        // Remove the loading state.
+        this.setState({ 
+          results: [...this.state.results, ...data.results], 
+          canLoadMore: data.total > data.offset + data.count  // Returns true when total number of results is greater than the offset (results skipped) plus results returned.
+        });  
+      })
+      .catch((err) => {
+        console.error(err);
+        this.setState({ hasError: true });  // Handle potential errors.
+      });
+  }
+
+
+
 }
 
 export default App;
