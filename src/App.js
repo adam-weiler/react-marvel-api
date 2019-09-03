@@ -95,17 +95,18 @@ class App extends Component {
     this.setState({ isLoading: true });
 
     // Invoke the `getCharacters()` method on the marvel service.
-    this.marvelService.getCharacters( { nameStartsWith: this.state.searchTerm })
+    this.marvelService.getCharacters( { nameStartsWith: this.state.searchTerm })  // Pass in the current `searchTerm` as `nameStartsWith`,
       .then((data) => {
         console.log('.then:');
         // console.log(data.data.results);
-        this.setState({ results: data.results, isLoading: true});
-      });
-
-    // Pass in the current `searchTerm` as `nameStartsWith`,
-    // Update the application state using the resulting data.
+        this.setState({ results: data.results, isLoading: true});  // Update the application state using the resulting data.
+      })
+      .catch((err) => {
+        this.setState({ hasError: true });  // Handle potential errors.
+      })
+    
     // Remove the loading state.
-    // Handle potential errors.
+    
   }
 
   fetchCharacter(id) {
