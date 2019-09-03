@@ -36,7 +36,7 @@ export class MarvelService {
     // TODO:
     // - Create the `params` object.
     console.log('Params object');
-    const params = { ...config, ...this.getAuthConfig() };
+    const myRequestParams = { ...config, ...this.getAuthConfig() };
 
     // - Extract the correct endpoint from `ENDPOINTS`.
     console.log('Endpoints object');
@@ -44,10 +44,10 @@ export class MarvelService {
 
     // - Dispatch a request using `axios.get()`.
     console.log('Axios request');
-    axios.get(endpoint, { params: params })
+    return axios.get(endpoint, { params: myRequestParams })
       .then((response) => {
-        console.log(response.data.data);
-        return response.data.data;  // - Parse and return the response.
+        console.log(response.data);
+        return response.data;  // - Parse and return the response.
       });
     
   }
