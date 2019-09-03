@@ -91,29 +91,41 @@ class App extends Component {
     // console.warn('Whoops, it looks like this method hasn\'t been implemented yet');
     // TODO:
     // Put the application into a loading state.
-    console.log('__ App.js fetchCharacters()');
+    console.log('__ PUTTING THE APP INTO A LOADING STATE.'); 
     this.setState({ isLoading: true });
 
     // Invoke the `getCharacters()` method on the marvel service.
     this.marvelService.getCharacters( { nameStartsWith: this.state.searchTerm })  // Pass in the current `searchTerm` as `nameStartsWith`,
       .then((data) => {
         console.log('.then:');
-        // console.log(data.data.results);
-        this.setState({ results: data.results, isLoading: true});  // Update the application state using the resulting data.
+        console.log(data.data.results);
+
+        // Update the application state using the resulting data.
+        // Remove the loading state.
+        this.setState({ results: data.data.results, isLoading: false });  
       })
       .catch((err) => {
         this.setState({ hasError: true });  // Handle potential errors.
       })
-    
-    // Remove the loading state.
-    
   }
 
   fetchCharacter(id) {
-    console.warn('Whoops, it looks like this method hasn\'t been implemented yet');
+    // console.warn('Whoops, it looks like this method hasn\'t been implemented yet');
     // TODO:
     // Invoke the `getCharacter()` method on the marvel service.
-    // Pass in the `id`.
+    console.log(' Loading an Hero!');
+    this.marvelService.getCharacter( { id: id })  // Pass in the `id`.
+      .then((data) => {
+        console.log('.then:');
+        console.log(data.data.results);
+
+
+      })
+      .catch((err) => {
+        this.setState({ hasError: true });  // Handle potential errors.
+      })
+
+    
     // Update the application state using the resulting data.
     // Handle potential errors.
   }
