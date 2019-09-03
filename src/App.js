@@ -72,7 +72,9 @@ class App extends Component {
       <section className="app">
         <SearchBar
           searchTerm={ this.state.searchTerm }
+          searchType={ this.state.searchType }
           onSubmit={ (searchTerm) => this.setState({ searchTerm }) }
+          onSelect={ (searchType) => this.setState({ searchType }) }
         />
         { resultsElem }
         { loadMoreElem }
