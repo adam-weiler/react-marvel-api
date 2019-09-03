@@ -119,6 +119,7 @@ class App extends Component {
         });  
       })
       .catch((err) => {
+        console.error(err);
         this.setState({ hasError: true });  // Handle potential errors.
       });
   }
@@ -137,6 +138,7 @@ class App extends Component {
         this.setState({ selectedResult: result });  // Update the application state using the resulting data.
       })
       .catch((err) => {
+        console.error(err);
         this.setState({ hasError: true });  // Handle potential errors.
       });
   }
@@ -162,6 +164,7 @@ class App extends Component {
         });  
       })
       .catch((err) => {
+        console.error(err);
         this.setState({ hasError: true });  // Handle potential errors.
       });
   }
