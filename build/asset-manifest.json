@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/adam-weiler/react-marvel-api/static/css/main.961b9a11.chunk.css",
+    "main.js": "/adam-weiler/react-marvel-api/static/js/main.f8c6a770.chunk.js",
+    "main.js.map": "/adam-weiler/react-marvel-api/static/js/main.f8c6a770.chunk.js.map",
+    "runtime~main.js": "/adam-weiler/react-marvel-api/static/js/runtime~main.0031fe19.js",
+    "runtime~main.js.map": "/adam-weiler/react-marvel-api/static/js/runtime~main.0031fe19.js.map",
+    "static/js/2.2247c4e7.chunk.js": "/adam-weiler/react-marvel-api/static/js/2.2247c4e7.chunk.js",
+    "static/js/2.2247c4e7.chunk.js.map": "/adam-weiler/react-marvel-api/static/js/2.2247c4e7.chunk.js.map",
+    "index.html": "/adam-weiler/react-marvel-api/index.html",
+    "precache-manifest.5be5469f985c03f62033be6cb24e1ac0.js": "/adam-weiler/react-marvel-api/precache-manifest.5be5469f985c03f62033be6cb24e1ac0.js",
+    "service-worker.js": "/adam-weiler/react-marvel-api/service-worker.js",
+    "static/css/main.961b9a11.chunk.css.map": "/adam-weiler/react-marvel-api/static/css/main.961b9a11.chunk.css.map"
+  }
+}
